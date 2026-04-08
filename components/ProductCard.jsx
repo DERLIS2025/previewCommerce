@@ -3,10 +3,9 @@ import { StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { formatGs } from '@/lib/formatCurrency'
 
 const ProductCard = ({ product }) => {
-
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || 'Gs. '
 
     const rating = Math.round(
         product.rating.reduce((acc, curr) => acc + curr.rating, 0) / product.rating.length
@@ -14,8 +13,6 @@ const ProductCard = ({ product }) => {
 
     return (
         <Link href={`/product/${product.id}`} className='group max-xl:mx-auto block'>
-            
-            {/* Imagen */}
             <div className='bg-[var(--card)] h-40 sm:w-60 sm:h-68 rounded-xl flex items-center justify-center border border-[var(--border)] overflow-hidden'>
                 <Image
                     width={500}
@@ -26,15 +23,12 @@ const ProductCard = ({ product }) => {
                 />
             </div>
 
-            {/* Info */}
             <div className='flex justify-between gap-3 text-sm text-[var(--foreground)] pt-3 max-w-60'>
-                
                 <div>
                     <p className='font-medium leading-tight'>
                         {product.name}
                     </p>
 
-                    {/* Rating */}
                     <div className='flex mt-1'>
                         {Array(5).fill('').map((_, index) => (
                             <StarIcon
@@ -48,11 +42,9 @@ const ProductCard = ({ product }) => {
                     </div>
                 </div>
 
-                {/* Precio */}
                 <p className='font-semibold text-[var(--primary)] whitespace-nowrap'>
-                    {currency}{Number(product.price).toLocaleString('es-PY')}
+                    {formatGs(product.price)}
                 </p>
-
             </div>
         </Link>
     )
