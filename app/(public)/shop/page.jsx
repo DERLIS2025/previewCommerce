@@ -1,23 +1,39 @@
 'use client'
-import { Suspense } from "react"
+import { Suspense, useMemo } from "react"
 import ProductCard from "@/components/ProductCard"
 import { MoveLeftIcon } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useSelector } from "react-redux"
 
 function ShopContent() {
-
     const searchParams = useSearchParams()
-    const search = searchParams.get('search')
     const router = useRouter()
+
+    const search = searchParams.get('search') || ''
+    const category = searchParams.get('category') || ''
+    const section = searchParams.get('section') || ''
 
     const products = useSelector(state => state.product.list)
 
-    const filteredProducts = search
-        ? products.filter(product =>
-            product.name.toLowerCase().includes(search.toLowerCase())
-        )
-        : products;
+    const filteredProducts = useMemo(() => {
+        return products.filter((product) => {
+            const matchesSearch = search
+                ? product.name.toLowerCase().includes(search.toLowerCase())
+                : true
+
+            const matchesCategory = category
+                ? product.category === category
+                : true
+
+            const matchesSection = section
+                ? product.section === section
+                : true
+
+            return matchesSearch && matchesCategory && matchesSection
+        })
+    }, [products, search, category, section])
+
+    const hasFilters = Boolean(search || category || section)
 
     return (
         <div className="min-h-[70vh] mx-6 bg-white">
@@ -26,7 +42,7 @@ function ShopContent() {
                     onClick={() => router.push('/shop')}
                     className="text-2xl text-[var(--muted)] my-6 flex items-center gap-2 cursor-pointer hover:text-[var(--primary)] transition"
                 >
-                    {search && <MoveLeftIcon size={20} />}
+                    {hasFilters && <MoveLeftIcon size={20} />}
                     Todos los <span className="text-[var(--foreground)] font-medium">productos</span>
                 </h1>
 
