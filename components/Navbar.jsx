@@ -30,7 +30,7 @@ const Navbar = () => {
                             width={180}
                             height={60}
                             priority
-                            className="h-10 sm:h-10 w-auto object-contain"
+                            className="h-11 sm:h-12 w-auto object-contain"
                         />
                     </Link>
 
