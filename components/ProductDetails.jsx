@@ -30,7 +30,11 @@ const ProductDetails = ({ product }) => {
     const hasSpecialPricing = product.strikethroughPrice || product.unitLabel || hasPricingScale;
 
     return (
+ 
+        <div className="flex max-lg:flex-col gap-10">
+
         <div className="flex max-lg:flex-col gap-12">
+ main
             <div className="flex max-sm:flex-col-reverse gap-3">
                 <div className="flex sm:flex-col gap-3">
                     {product.images?.map((image, index) => (
@@ -73,6 +77,74 @@ const ProductDetails = ({ product }) => {
                         {product.rating?.length || 0} Reviews
                     </p>
                 </div>
+ 
+
+                {product.description && (
+                    <p className="mt-4 text-slate-600 leading-relaxed">{product.description}</p>
+                )}
+
+                <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5">
+                    {!hasSpecialPricing ? (
+                        <div className="flex items-start gap-3 text-2xl font-semibold text-slate-800">
+                            <p>{formatGs(product.price)}</p>
+                            <p className="text-xl text-slate-500 line-through">
+                                {formatGs(product.mrp)}
+                            </p>
+                        </div>
+                    ) : (
+                        <div>
+                            {product.strikethroughPrice && (
+                                <p className="text-sm text-slate-400 mb-3">
+                                    Contado: <span className="line-through">{formatGs(product.strikethroughPrice)}</span>
+                                </p>
+                            )}
+
+                            <div className="border-2 border-green-700 rounded-xl p-5 text-center">
+                                <p className="text-xs text-green-700 font-semibold uppercase">
+                                    {product.specialPriceLabel || "Precio especial"}
+                                </p>
+
+                                <h2 className="text-3xl font-bold mt-2">
+                                    {formatGs(product.price)}
+                                </h2>
+
+                                <p className="text-green-700 font-semibold mt-1">
+                                    {product.unitLabel || "m² instalado"}
+                                </p>
+                            </div>
+
+                            {hasPricingScale && (
+                                <div className="mt-4 border rounded-xl overflow-hidden bg-white">
+                                    <div className="px-4 py-2 border-b bg-slate-50 text-sm font-medium text-slate-600">
+                                        Escala de precios
+                                    </div>
+                                    {product.pricingScale.map((tier, index) => (
+                                        <div
+                                            key={index}
+                                            className={`flex justify-between px-4 py-3 border-t text-sm ${
+                                                tier.highlight ? "bg-green-50" : ""
+                                            }`}
+                                        >
+                                            <span>{tier.range}</span>
+                                            <span className="font-semibold">{formatGs(tier.price)}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    <div className="flex items-end gap-4 mt-5 pt-4 border-t border-slate-200">
+                        {cart[productId] && <Counter productId={productId} />}
+
+                        <button
+                            onClick={() => (!cart[productId] ? addToCartHandler() : router.push('/cart'))}
+                            className="bg-slate-800 text-white px-10 py-3 rounded"
+                        >
+                            {!cart[productId] ? 'Agregar' : 'Ver carrito'}
+                        </button>
+                    </div>
+
 
                 {!hasSpecialPricing ? (
                     <div className="flex items-start my-6 gap-3 text-2xl font-semibold text-slate-800">
@@ -130,6 +202,7 @@ const ProductDetails = ({ product }) => {
                     >
                         {!cart[productId] ? 'Agregar' : 'Ver carrito'}
                     </button>
+ main
                 </div>
 
                 <hr className="my-5" />
