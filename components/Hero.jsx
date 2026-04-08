@@ -5,6 +5,7 @@ import Image from 'next/image'
 import React from 'react'
 import CategoriesMarquee from './CategoriesMarquee'
 import { formatGs } from '@/lib/formatCurrency'
+import Link from 'next/link'
 
 const Hero = () => {
 
@@ -35,13 +36,19 @@ const Hero = () => {
                         </div>
 
                         <div className='flex flex-wrap gap-3 mt-4 sm:mt-10'>
-                            <button className='bg-[var(--primary)] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-[var(--primary-hover)] active:scale-95 transition'>
+                            <Link
+                                href='/shop'
+                                className='bg-[var(--primary)] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-[var(--primary-hover)] active:scale-95 transition inline-block'
+                            >
                                 Ver productos
-                            </button>
+                            </Link>
 
-                            <button className='border border-[var(--border)] text-[var(--foreground)] text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-white active:scale-95 transition'>
+                            <Link
+                                href='/servicios'
+                                className='border border-[var(--border)] text-[var(--foreground)] text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-white active:scale-95 transition inline-block'
+                            >
                                 Ver servicios
-                            </button>
+                            </Link>
                         </div>
                     </div>
 
@@ -53,7 +60,10 @@ const Hero = () => {
                 </div>
 
                 <div className='flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-[var(--muted)]'>
-                    <div className='flex-1 flex items-center justify-between w-full bg-white rounded-3xl p-6 px-8 group border border-[var(--border)] shadow-sm'>
+                    <Link
+                        href='/shop?section=cesped-natural'
+                        className='flex-1 flex items-center justify-between w-full bg-white rounded-3xl p-6 px-8 group border border-[var(--border)] shadow-sm'
+                    >
                         <div>
                             <p className='text-3xl font-medium text-[var(--foreground)] max-w-40'>
                                 Césped natural
@@ -63,9 +73,12 @@ const Hero = () => {
                             </p>
                         </div>
                         <Image className='w-35' src={assets.hero_product_img1} alt="Césped natural" />
-                    </div>
+                    </Link>
 
-                    <div className='flex-1 flex items-center justify-between w-full bg-[var(--accent)] rounded-3xl p-6 px-8 group border border-[var(--border)]'>
+                    <Link
+                        href='/shop?section=riego-automatico'
+                        className='flex-1 flex items-center justify-between w-full bg-[var(--accent)] rounded-3xl p-6 px-8 group border border-[var(--border)]'
+                    >
                         <div>
                             <p className='text-3xl font-medium text-[var(--foreground)] max-w-40'>
                                 Riego automático
@@ -75,7 +88,7 @@ const Hero = () => {
                             </p>
                         </div>
                         <Image className='w-35' src={assets.hero_product_img2} alt="Riego automático" />
-                    </div>
+                    </Link>
                 </div>
             </div>
 
