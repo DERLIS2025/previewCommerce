@@ -6,8 +6,11 @@ import "./globals.css";
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata = {
-    title: "Corpi & Cia | Jardinería y Empastado",
-    description: "Servicio profesional de jardinería, césped natural y riego automático en Paraguay.",
+  title: "Corpi & Cia",
+  description: "Servicio profesional de jardinería en Paraguay",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 export default function RootLayout({ children }) {
     return (
