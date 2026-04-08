@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+:root {
+    --background: #ffffff;
+    --foreground: #1f2937;
+    --primary: #178a2f;
+    --primary-hover: #106b24;
+    --secondary: #43a047;
+    --accent: #eaf6ec;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card: #ffffff;
+}
+
 @layer components {
     @keyframes marqueeScroll {
         0% {
@@ -12,8 +24,21 @@
 }
 
 @layer base {
+    html {
+        background-color: var(--background);
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+    }
+
     button {
         cursor: pointer;
+    }
+
+    a {
+        transition: color 0.2s ease, opacity 0.2s ease;
     }
 }
 
