@@ -4,10 +4,9 @@ import { ArrowRightIcon, ChevronRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import CategoriesMarquee from './CategoriesMarquee'
+import { formatGs } from '@/lib/formatCurrency'
 
 const Hero = () => {
-
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
 
     return (
         <div className='mx-6'>
@@ -18,22 +17,32 @@ const Hero = () => {
                             <span className='bg-[var(--primary)] px-3 py-1 max-sm:ml-1 rounded-full text-white text-xs'>
                                 NUEVO
                             </span>
-                            Envíos disponibles en todo Paraguay
+                            Soluciones para tu jardín en todo Paraguay
                             <ChevronRightIcon className='group-hover:ml-2 transition-all' size={16} />
                         </div>
 
                         <h2 className='text-3xl sm:text-5xl leading-[1.2] my-3 font-medium text-[var(--foreground)] max-w-xs sm:max-w-md'>
-                            Todo lo que tu jardín necesita en un solo lugar
+                            Todo lo que tu jardín necesita, en un solo lugar
                         </h2>
 
+                        <p className='text-[var(--muted)] text-sm sm:text-base max-w-md mt-4'>
+                            Césped natural, riego automático y productos para transformar tu espacio exterior con una solución más práctica y profesional.
+                        </p>
+
                         <div className='text-[var(--foreground)] text-sm font-medium mt-4 sm:mt-8'>
-                            <p>Desde</p>
-                            <p className='text-3xl'>{currency}4.90</p>
+                            <p>Precios desde</p>
+                            <p className='text-3xl'>{formatGs(15000)}</p>
                         </div>
 
-                        <button className='bg-[var(--primary)] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 mt-4 sm:mt-10 rounded-xl hover:bg-[var(--primary-hover)] hover:scale-103 active:scale-95 transition'>
-                            Ver productos
-                        </button>
+                        <div className='flex flex-wrap gap-3 mt-4 sm:mt-10'>
+                            <button className='bg-[var(--primary)] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-[var(--primary-hover)] active:scale-95 transition'>
+                                Ver productos
+                            </button>
+
+                            <button className='border border-[var(--border)] text-[var(--foreground)] text-sm py-2.5 px-7 sm:py-5 sm:px-12 rounded-xl hover:bg-white active:scale-95 transition'>
+                                Ver servicios
+                            </button>
+                        </div>
                     </div>
 
                     <Image
@@ -47,25 +56,25 @@ const Hero = () => {
                     <div className='flex-1 flex items-center justify-between w-full bg-white rounded-3xl p-6 px-8 group border border-[var(--border)] shadow-sm'>
                         <div>
                             <p className='text-3xl font-medium text-[var(--foreground)] max-w-40'>
-                                Productos destacados
+                                Césped natural
                             </p>
                             <p className='flex items-center gap-1 mt-4 text-[var(--primary)]'>
                                 Ver más <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} />
                             </p>
                         </div>
-                        <Image className='w-35' src={assets.hero_product_img1} alt="Producto destacado" />
+                        <Image className='w-35' src={assets.hero_product_img1} alt="Césped natural" />
                     </div>
 
                     <div className='flex-1 flex items-center justify-between w-full bg-[var(--accent)] rounded-3xl p-6 px-8 group border border-[var(--border)]'>
                         <div>
                             <p className='text-3xl font-medium text-[var(--foreground)] max-w-40'>
-                                Ofertas disponibles
+                                Riego automático
                             </p>
                             <p className='flex items-center gap-1 mt-4 text-[var(--primary)]'>
                                 Ver más <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} />
                             </p>
                         </div>
-                        <Image className='w-35' src={assets.hero_product_img2} alt="Oferta disponible" />
+                        <Image className='w-35' src={assets.hero_product_img2} alt="Riego automático" />
                     </div>
                 </div>
             </div>
