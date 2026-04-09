@@ -6,13 +6,27 @@ import ProductCard from "@/components/ProductCard";
 const RelatedProducts = ({ product }) => {
   if (!product) return null;
 
-  const relatedProducts = productDummyData.filter(
-    (item) =>
-      item.id !== product.id &&
-      product.relatedProductIds?.includes(item.id)
-  );
+  let relatedProducts = [];
 
-  if (!relatedProducts.length) return null;
+  if (product.relatedProductIds?.length) {
+    relatedProducts = productDummyData.filter(
+      (item) =>
+        item.id !== product.id &&
+        product.relatedProductIds.includes(item.id)
+    );
+  } else {
+    relatedProducts = productDummyData.filter(
+      (item) =>
+        item.id !== product.id &&
+        (item.category === product.category || item.section === product.section)
+    ).slice(0, 4);
+  }
+
+  if (!relatedProducts.length) {
+    relatedProducts = productDummyData
+      .filter((item) => item.id !== product.id)
+      .slice(0, 4);
+  }
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-14">
