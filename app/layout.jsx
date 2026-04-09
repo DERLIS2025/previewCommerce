@@ -1,26 +1,32 @@
-import { Outfit } from "next/font/google";
-import { Toaster } from "react-hot-toast";
-import StoreProvider from "@/app/StoreProvider";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+});
 
-export const metadata = {
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
+
+export const metadata: Metadata = {
   title: "Corpi & Cia",
-  description: "Servicio profesional de jardinería en Paraguay",
-  icons: {
-    icon: "/icon.png",
-  },
+  description: "Servicio de jardinería y empastado en Paraguay.",
 };
-export default function RootLayout({ children }) {
-    return (
-        <html lang="en">
-            <body className={`${outfit.className} antialiased`}>
-                <StoreProvider>
-                    <Toaster />
-                    {children}
-                </StoreProvider>
-            </body>
-        </html>
-    );
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="es">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} bg-white font-sans text-slate-950 antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
 }
