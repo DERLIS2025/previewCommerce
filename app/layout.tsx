@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import StoreProvider from "@/app/StoreProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Corpi & Cia",
   description: "Servicio de jardinería y empastado en Paraguay.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +30,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-white font-sans text-slate-950 antialiased`}
       >
-        {children}
+        <StoreProvider>
+          <Toaster />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );
