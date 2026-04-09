@@ -82,6 +82,7 @@ export const productDummyData = [
             { range: "26 a 50 m²", price: 43000 },
             { range: "Más de 50 m²", price: 31000, highlight: true },
         ],
+        relatedProductIds: ["prod_5", "prod_6", "prod_11", "prod_14"],
         images: [product_img1],
         category: "Césped",
         section: "cesped-natural",
@@ -106,6 +107,7 @@ export const productDummyData = [
             { range: "26 a 50 m²", price: 34000 },
             { range: "Más de 50 m²", price: 25000, highlight: true },
         ],
+        relatedProductIds: ["prod_5", "prod_8", "prod_11", "prod_14"],
         images: [product_img2],
         category: "Césped",
         section: "cesped-natural",
@@ -126,6 +128,7 @@ export const productDummyData = [
         specialPriceLabel: "Precio especial",
         strikethroughPrice: 36000,
         pricingScale: [],
+        relatedProductIds: ["prod_9", "prod_11", "prod_12", "prod_14"],
         images: [product_img3],
         category: "Césped",
         section: "cesped-natural",
@@ -150,6 +153,7 @@ export const productDummyData = [
             { range: "26 a 50 m²", price: 34000 },
             { range: "Más de 50 m²", price: 25000, highlight: true },
         ],
+        relatedProductIds: ["prod_5", "prod_7", "prod_11", "prod_14"],
         images: [product_img4],
         category: "Césped",
         section: "cesped-natural",
@@ -321,7 +325,6 @@ export const productDummyData = [
         updatedAt: 'Sat Jul 17 2025 14:51:25 GMT+0530 (India Standard Time)',
     }
 ];
-
 export const ourSpecsData = [
     {
         title: "Trabajamos en todo el Paraguay",
